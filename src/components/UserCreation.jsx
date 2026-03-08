@@ -1,8 +1,3 @@
-
-
-
-
-
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -48,9 +43,10 @@ const UserCreation = () => {
       );
 
       if (res.status === 200 && res.data.id) {
-        console.log(id);
+        console.log(res.data.id); // Corrected this line
         
         toast.success('Merchant created successfully');
+        // localStorage.setItem("merchant_id", res.data.id); // Save merchant_id
         navigate('/use'); // Change to your desired route
       } else {
         toast.error(res.data.msg || 'Failed to create user.');

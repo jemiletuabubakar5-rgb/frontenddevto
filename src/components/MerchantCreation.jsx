@@ -1,21 +1,9 @@
-
-
-
-
-
-
-
-
-
-
-
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { toast, } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+
 const MerchantCreation = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     first_name: "",
@@ -35,6 +23,8 @@ const MerchantCreation = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate input fields
     if (
       !formData.first_name.trim() ||
       !formData.last_name.trim() ||
@@ -45,27 +35,40 @@ const MerchantCreation = () => {
       !formData.phone.trim()
     ) {
       setError("Please fill in all fields");
-    } else {
+      return; // Stop further execution
+    }
+
+    try {
       const res = await axios.post(
         "http://ecommerce.reworkstaging.name.ng/v2/merchants",
         formData
       );
-      console.log(res)
-      if (res.status == 200 && res.data.id) {
-        toast.success('Merchant created successfully');
-        navigate('/Login')
+
+      console.log("API Response:", res); // Log the full response for debugging
+
+      if (res.status === 200 && res.data.adminId) {
+        alert("Merchant created successfully");
+        localStorage.setItem("admin", res.data.adminId.id); // Save merchant_id
+        // const adminId = JSON.parse(localStorage.getItem("admin"));
+        navigate("/Login"); // Redirect to the login page
       } else {
-        toast.error(res.data.msg);
+        setError(res.data.msg || "Failed to create merchant. Please try again.");
       }
-      setError(null);
+    } catch (err) {
+      console.error("API Error:", err.response || err); // Log the error for debugging
+      setError(
+        err.response?.data?.msg ||
+          "An error occurred while creating the merchant."
+      );
     }
   };
+
   return (
-    <div
-      className="min-h-screen flex items-center justify-center bg-gray-100"
-      onSubmit={handleSubmit}
-    >
-      <form className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <form
+        className="bg-white p-8 rounded-lg shadow-md w-full max-w-md"
+        onSubmit={handleSubmit}
+      >
         <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
 
         {/* First Name */}
@@ -78,6 +81,7 @@ const MerchantCreation = () => {
             onChange={handleChange}
             className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="John"
+            required
           />
         </div>
 
@@ -91,6 +95,7 @@ const MerchantCreation = () => {
             onChange={handleChange}
             className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Doe"
+            required
           />
         </div>
 
@@ -104,6 +109,7 @@ const MerchantCreation = () => {
             onChange={handleChange}
             className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="ap@gmail.com"
+            required
           />
         </div>
 
@@ -111,12 +117,13 @@ const MerchantCreation = () => {
         <div className="mb-4">
           <label className="block text-sm font-medium mb-2">Phone</label>
           <input
-            type="number"
+            type="tel" // Use "tel" for phone numbers
             name="phone"
             value={formData.phone}
             onChange={handleChange}
             className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="0901234567"
+            required
           />
         </div>
 
@@ -130,6 +137,7 @@ const MerchantCreation = () => {
             onChange={handleChange}
             className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Nicolas Aluminium"
+            required
           />
         </div>
 
@@ -142,6 +150,7 @@ const MerchantCreation = () => {
             onChange={handleChange}
             className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="All is well that ends well"
+            required
           />
         </div>
 
@@ -151,7 +160,7 @@ const MerchantCreation = () => {
             Additional Phone Numbers
           </label>
           <input
-            type="number"
+            type="tel" // Use "tel" for phone numbers
             name="phones"
             value={formData.phones}
             onChange={handleChange}
@@ -170,14 +179,16 @@ const MerchantCreation = () => {
             onChange={handleChange}
             className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder=""
+            required
           />
         </div>
-        {
-          error && <p className="text-red-500">{error}</p>
-        }
+
+        {error && <p className="text-red-500">{error}</p>}
 
         {/* Submit Button */}
-        <Link to='/Login' className="flex justify-end hover:text-red-600 text-sm mb-2">!I don't have an account</Link>
+        <Link to="/Login" className="flex justify-end hover:text-red-600 text-sm mb-2">
+          !I don't have an account
+        </Link>
         <button
           type="submit"
           className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -185,8 +196,8 @@ const MerchantCreation = () => {
           Sign Up
         </button>
       </form>
-      {/* <ToastContainer /> */}
     </div>
   );
 };
+
 export default MerchantCreation;

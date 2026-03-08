@@ -14,6 +14,7 @@
     "axios": "^1.8.1",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.8",
+    "cors": "^2.8.5",
     "icons": "^1.0.0",
     "react": "^19.0.0",
     "react-boostrap-carousel": "^3.0.0",

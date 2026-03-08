@@ -1,58 +1,54 @@
-// // import Detail from "./components/Detail"
-// // import  from "./components/Productpractical"
-// import Navebar  from "./components/Navebar"
-// // import Productpractical from "./components/Productpractical"
-// // import About  from "./Pages/About"
-// // import Contact  from "./Pages/Contact"
-// import Home  from "./Pages/Home"
-// // import Shop  from "./Pages/Shop"
-// // import Head  from "./Pages/Head"
-// // import Cart from './Pages/Cart'
-// import Icons from './Pages/Icons'
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-// import TaxSoftware from "./components/TaxSoftware"
-// // import TaxSoftware from './TaxSoftware';
 
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import LoginPage from './Pages/LoginPage'; // Adjust the path as needed
-import Footer from "./components/Footer"
-import Navebar from "./components/Navebar"
-import Home from "./Pages/Home"
-import UserList from "./components/UserList"
-import ProductList from "./components/ProductList"
-import Tshop from "./components/Tshop"
-import Icons from "./pages/Icons"
-import CertegoryList from "./components/CertegoryList"
-import UserCreation from "./components/UserCreation"
+
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { DataProvider } from './context/DataContext'; // Import DataProvider
+import AuthModal from './modals/AuthModal';
+import Footer from "./components/Footer";
+import BrandsSection from "./components/BrandsSection";
+import Navbar from "./components/Navbar"; // Fixed typo in component name
+import Detail from "./components/Detail";
+import Modal from "./components/Modal";
+import Home from "./Pages/Home";
+import Adminsignin from "./Pages/Adminsignin";
 import Dashboard from './components/Dashboard';
-import ProductDetail from "./components/ProductDetail"
 import MerchantCreation from './components/MerchantCreation';
+import PostsList from './Pages/PostList';
+import CreatePost from "./Pages/CreatePost";
 
+function AppContent() {
+  const location = useLocation();
+  const hideNavbarFooterPaths = ["/Login", "/Adminsignin", "/admin/dashboard", "/Game"];
 
-
-function App() {
+  const shouldHideNavbarFooter = hideNavbarFooterPaths.includes(location.pathname);
 
   return (
-<Router>
-<Navebar/> 
-<Routes>
-<Route path="/" element={<Home />}/>
-<Route path="/Icons" element={<Icons />}/>
-<Route path="/Tshop" element={<Tshop />}/>
-<Route path="/Login" element={<LoginPage />}/>
-<Route path="/use" element={<UserList />}/>
-<Route path="/product" element={<ProductList />}/>
-<Route path="/certegory" element={<CertegoryList />}/>
-<Route path="/user" element={< UserCreation />}/>
-<Route path="/admin/dashboard" element={<Dashboard />} />
-<Route path="/creation" element={<MerchantCreation />} />
-<Route path="/products/" element={<ProductDetail />}/>
-</Routes>
-<Footer/> 
-{/* <Hero/> */}
-
-</Router>
-  )
+    <>
+      {!shouldHideNavbarFooter && <Navbar />}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/BrandsSection" element={<BrandsSection />} />
+        <Route path="/Adminsignin" element={<Adminsignin />} />
+        <Route path="/AuthModal" element={<AuthModal />} />
+        <Route path="/Modal" element={<Modal />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/creation" element={<MerchantCreation />} />
+      <Route path="/post/:id" element={<Detail />} />
+        <Route path="/posts" element={<PostsList />} />
+        <Route path="/create-post" element={<CreatePost />} />
+      </Routes>
+      {!shouldHideNavbarFooter && <Footer />}
+    </>
+  );
 }
 
-export default App
+function AppWrapper() {
+  return (
+    <Router>
+      <DataProvider> {/* Wrap everything with DataProvider */}
+        <AppContent />
+      </DataProvider>
+    </Router>
+  );
+}
+
+export default AppWrapper;

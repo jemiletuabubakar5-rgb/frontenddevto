@@ -1,0 +1,14 @@
+.reactions-container {
+    display: flex; 
+    flex-direction: column; /* Changed direction to column */
+    align-items: center; /* Center align items if needed */
+    gap: 10px; /* Space between items */
+    padding: 10px; /* Padding for the container */
+    border-radius: 1.5rem; /* Equivalent to rounded-3xl */
+    background-color: #f9f9f9; /* Optional: background-color */
+}
+
+.reaction-item {
+    font-size: 2rem; /* Customize size as needed */
+    cursor: pointer; /* Pointer cursor for clickable items */
+}

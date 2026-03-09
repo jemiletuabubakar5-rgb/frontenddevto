@@ -7,7 +7,7 @@ import { CiBookmark } from 'react-icons/ci';
 import { VscArrowSwap } from 'react-icons/vsc';
 import { BsThreeDots, BsXLg } from 'react-icons/bs';
 import { FaRegComment } from 'react-icons/fa';
-import image23 from './image/image23.JPEG';
+import image23 from './image/image23.jpeg';
 import { useData } from '../context/DataContext';
 import CommentForm from './CommentForm';
 const BASE_URL = "https://backend-2-production-0f74.up.railway.app";

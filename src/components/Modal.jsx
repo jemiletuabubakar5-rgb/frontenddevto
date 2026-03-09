@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import image1 from './image/image1.png'
-import image2 from './image/image2.PNG'
+import image2 from './image/image2.png'
 import image5 from './image/image5.PNG'
 import image19 from './image/image19.jpg'
 

@@ -17,8 +17,8 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { FaPinterestP } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io";
-import image37 from"./image/image37.PNG";
-import image40 from "./image/image40.PNG"
+import image37 from"./image/image37.png";
+import image40 from "./image/image40.png"
 
 
 const Footer = () => {

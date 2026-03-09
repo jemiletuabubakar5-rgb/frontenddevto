@@ -19,16 +19,15 @@ import { toast } from 'react-toastify';
 import AuthModal from '../modals/AuthModal';
 import { useState } from "react";
 
-// Import your images
-import image1 from './image/image1.PNG';
-import image2 from './image/image2.PNG';
-import image5 from './image/image5.PNG';
+import image1 from "../assets/images/image1.png";
+import image2 from './image/image2.png';
+import image5 from './image/image5.png';
 import image19 from './image/image19.jpg';
-import image23 from './image/image23.JPEG';
-import image27 from './image/image27.JPEG';
+import image23 from './image/image23.jpeg';
+import image27 from './image/image27.jpeg';
 import image29 from './image/image29.png';
 import image37 from './image/image37.png';
-import image39 from './image/image39.PNG';
+import image39 from './image/image39.png';
 import image40 from './image/image40.png';
 import image3 from './image/image3.png';
 

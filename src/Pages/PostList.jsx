@@ -5,8 +5,8 @@ import { useData } from '../context/DataContext';
 import { useNavigate } from 'react-router-dom';
 import { FaHeart, FaRegHeart, FaRegComment, FaEllipsisH } from 'react-icons/fa';
 // import { formatDistanceToNow } from 'date-fns';
-import image23 from './image/image23.JPEG';
-import image27 from './image/image27.JPEG';
+import image23 from './image/image23.jpeg';
+import image27 from './image/image27.jpeg';
 
 const PostsList = () => {
   const { 

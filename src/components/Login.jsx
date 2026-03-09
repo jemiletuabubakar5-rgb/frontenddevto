@@ -1,7 +1,7 @@
 
 
 import "react-toastify/dist/ReactToastify.css";
-import image28 from "./image/image28.PNG"
+import image28 from "./image/image28.png"
 import { Link } from "react-router-dom";
 import { FaApple } from "react-icons/fa";
 import { FaSquareFacebook } from "react-icons/fa6";

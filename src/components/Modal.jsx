@@ -6,7 +6,7 @@ import image2 from './image/image2.png'
 import image5 from './image/image5.png'
 import image19 from './image/image19.jpg'
 
-import image23 from './image/image23.JPEG'
+import image23 from './image/image23.jpeg'
 import image27 from './image/image27.JPEG'
 import image36 from './image/image36.JPG'
 

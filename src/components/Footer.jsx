@@ -17,7 +17,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { FaPinterestP } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io";
-import image37 from"./image/image37.png";
+// import image37 from"./image/image37.png";
 import image40 from "./image/image40.PNG"
 
 
@@ -31,7 +31,7 @@ const Footer = () => {
                 <div className="text-gray-600 mt-5 text-center">Thank you to our Diamond Sponsors for supporting the DEV Community</div>
 
                 <div className="flex w-50 mt-10 gap-5 ml-20">
-                    <img src={image37} alt="" />
+                    {/* <img src={image37} alt="" /> */}
                     <img src={image40} alt="" />
                 </div>
 
